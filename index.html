@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>wish list</title>
+  <link rel="stylesheet" href="dist/main.css">
+  <script defer src="dist/main.js"></script>
+</head>
+<body>
+  <div id="page-wrapper" class="page-wrapper">
+    <header id="page-header" class="page-header mb-4">
+      <nav class="navbar navbar-dark bg-dark px-0">
+        <div class="container">
+          <a href="/" class="navbar-brand"><span class="far fa-heart"></span> wish list</a>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-create">Создать товар</button>
+        </div>
+      </nav>
+    </header>
+    <main id="page-main" class="page-main">
+      <div class="container">
+        <h1 id="list-title" class="text-center">Список желаний пуст.</h1>
+        <div id="list" class="row"></div>
+      </div>
+    </main>
+    <footer id="page-footer" class="page-footer py-3 bg-dark text-white">
+      <div class="container text-center"><small>&copy; <a href="/" class="link-light">wish list</a> 2019</small></div>
+    </footer>
+  </div>
+  <div class="modal fade" id="modal-create" tabindex="-1" role="dialog" aria-labelledby="modal-create-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form id="form-create" class="form modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5 mb-0" id="modal-create-title">Создать товар</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="create-item-title">Название</label>
+            <input type="text" name="title" id="create-item-title" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-item-img">Ссылка на товар</label>
+            <input type="text" name="link" id="create-item-link" class="form-control" pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" required>
+          </div>
+          <div class="form-group">
+            <label for="create-item-price">Цена</label>
+            <input type="text" name="price" id="create-item-price" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="create-item-img">Ссылка на фото товара</label>
+            <input type="text" name="img" id="create-item-img" class="form-control" pattern="^https?://\S+(?:jpg|jpeg|png)$" required>
+          </div>
+          <div class="form-group">
+            <label for="create-item-description">Описание</label>
+            <textarea name="description" id="create-item-description" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          <button type="submit" class="btn btn-success">Создать</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="modal-edit-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form id="form-edit" class="form modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5 mb-0" id="modal-edit-title">Изменить товар</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="edit-item-title">Название</label>
+            <input type="text" name="title" id="edit-item-title" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-item-img">Ссылка на товар</label>
+            <input type="text" name="link" id="edit-item-link" class="form-control" pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-item-price">Цена</label>
+            <input type="text" name="price" id="edit-item-price" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-item-img">Ссылка на фото товара</label>
+            <input type="text" name="img" id="edit-item-img" class="form-control" pattern="^https?://\S+(?:jpg|jpeg|png)$" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-item-description">Описание</label>
+            <textarea name="description" id="edit-item-description" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="text" name="id" hidden>
+          <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          <button type="submit" class="btn btn-warning">Изменить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-remove" tabindex="-1" role="dialog" aria-labelledby="modal-remove-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form id="form-remove" class="form modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5 mb-0" id="modal-remove-title">Удалить товар</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img src="img/noimg.png" alt="нет фото" class="img-responsive mx-auto mb-3" name="img">
+            <h3 name="title">нет названия товара</h3>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="text" name="id" hidden>
+          <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          <button type="submit" class="btn btn-danger">Удалить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+@function rem($px, $context: $font-size)
+  @if (unitless($px))
+    $px: $px * 1px
+  @if (unitless($context))
+    $context: $context * 1px
+  @return $px / $context * 1rem
+
+=xxl
+  @media only screen and (min-width : 1600px)
+    @content
+
+=xl-down
+  @media only screen and (max-width : 1599.98px)
+    @content
+
+=xl-up
+  @media only screen and (min-width : 1200px)
+    @content
+
+=lg-down
+  @media only screen and (max-width : 1199.98px)
+    @content
+
+=lg-up
+  @media only screen and (min-width : 992px)
+    @content
+
+=md-down
+  @media only screen and (max-width : 991.98px)
+    @content
+
+=md-up
+  @media only screen and (min-width : 768px)
+    @content
+
+=sm-down
+  @media only screen and (max-width : 767.98px)
+    @content
+
+=sm-up
+  @media only screen and (min-width : 576px)
+    @content
+
+=xs
+  @media only screen and (max-width : 575.98px)
+    @content
+
+=transition
+  transition: 0.35s
+
+=inertial-scroll
+  scroll-snap-type: x mandatory
+  -webkit-overflow-scrolling: touch
+
+=box-shadow($x, $y, $blur, $color, $inset:false, $radius:0)
+  @if $inset
+    box-shadow: $inset $x $y $blur $radius $color
+  @else
+    box-shadow: $x $y $blur $radius $color
+
+=text-shadow($x, $y, $blur, $color, $radius:0)
+  text-shadow: $x $y $blur $radius $color
+
+=overflow-overlay($width:1rem, $colorLeft:$white, $colorRight:$white)
+  position: relative
+  overflow: hidden
+  &:before
+  &:after
+    position: absolute
+    z-index: 1
+    top: 0
+    bottom: 0
+    pointer-events: none
+  &:before
+    content: ""
+    left: 0
+    width: $width
+    background-image: linear-gradient(to left, rgba(255,255,255,0) 0%, $colorLeft 100%)
+  &:after
+    content: ""
+    right: 0
+    width: $width
+    background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, $colorRight 100%)
+
+=overflow-overlay-left($width:1rem, $color:$white)
+  position: relative
+  overflow: hidden
+  &:before
+    content: ""
+    position: absolute
+    z-index: 1
+    top: 0
+    bottom: 0
+    left: 0
+    width: $width
+    background-image: linear-gradient(to left, rgba(255,255,255,0) 0%, $color 100%)
+    pointer-events: none
+
+=overflow-overlay-right($width:1rem, $color:$white)
+  position: relative
+  overflow: hidden
+  &:after
+    content: ""
+    position: absolute
+    z-index: 1
+    top: 0
+    bottom: 0
+    right: 0
+    width: $width
+    background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, $color 100%)
+    pointer-events: none
+
+=scroll-horizontal
+  @extend .list-unstyled
+  display: flex
+  flex-wrap: nowrap
+  flex-direction: row
+  overflow-x: auto
+  overflow-y: hidden
+  scroll-snap-type: x mandatory
+  -webkit-overflow-scrolling: touch
+  & > *
+    flex-shrink: 0
