@@ -75,6 +75,8 @@ class View extends EventEmitter {
         field.value = item.id;
       } else if (field.getAttribute('name') == 'img') {
         field.value = item.querySelector(`.${itemPrefix}-${fieldName}`).src;
+      } else if (field.getAttribute('name') == 'link') {
+        field.value = item.querySelector(`.${itemPrefix}-${fieldName}`).href;
       } else {
         field.value = item.querySelector(`.${itemPrefix}-${fieldName}`).textContent;
       }
